@@ -25,11 +25,11 @@ function draw() {
 
 function playerstuff() {
     image(crabasset1,p.x,p.y,p.w,p.h)
-    if (keyIsDown(LEFT_ARROW)) {
+    if (keyIsDown(LEFT_ARROW)&& p.x >= 10) {
         p.x -= 5;
     }
     
-    if (keyIsDown(RIGHT_ARROW)) {
+    if (keyIsDown(RIGHT_ARROW)&& p.x <= 490) {
         p.x += 5;
     }
 }

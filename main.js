@@ -5,7 +5,7 @@ var express = require('express');
 var app = express();
 var server = http.Server(app);
 var io = socketIO(server);
-const port = 3000;
+var port = process.env.PORT || 3000;
 app.set('port', 5941);
 app.use('/', express.static(__dirname + '/client'));
 app.get('/', function(request, response) {

@@ -1,14 +1,19 @@
+var http = require('http');
+var path = require('path');
+var socketIO = require('socket.io');
 var express = require('express');
 var app = express();
-var serv = require('http').Server(app);
-
-app.get('/',function(req, res) {
-	res.sendFile(__dirname + '/index.html');
+var server = http.Server(app);
+var io = socketIO(server);
+app.set('port', 5941);
+app.use('/', express.static(__dirname + '/client'));
+app.get('/', function(request, response) {
+  response.sendFile(path.join(__dirname, 'index.html'));
 });
-app.use('/',express.static(__dirname));
+server.listen(8000, function() {
+  console.log('startings on localhost:8000');
+});
 
-serv.listen(process.env.PORT || 2000);
-console.log("Server started.");
 var SOCKET_LIST = {};
 var PLAYER_LIST = {};
 
@@ -38,7 +43,6 @@ class Player {
        }
     }
 }
-var io = require('socket.io')(serv,{});
 
 io.sockets.on('connection', function(socket){
     socket.id = Math.random();

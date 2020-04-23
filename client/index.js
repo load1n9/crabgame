@@ -1,7 +1,7 @@
 var socket = io();
 
 function preload() {
-   crab = loadImage("/assets/crab.png")
+   crab = loadImage("assets/crab.png")
 }
 //basic variables
 
@@ -51,4 +51,3 @@ function draw() {
     }
     
 }
-

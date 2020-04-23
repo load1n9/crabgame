@@ -5,13 +5,14 @@ var express = require('express');
 var app = express();
 var server = http.Server(app);
 var io = socketIO(server);
+const port = 8000;
 app.set('port', 5941);
 app.use('/', express.static(__dirname + '/client'));
 app.get('/', function(request, response) {
   response.sendFile(path.join(__dirname, 'index.html'));
 });
-server.listen(8000, function() {
-  console.log('startings on localhost:8000');
+server.listen(port, function() {
+  console.log(`starting on ${port}`);
 });
 
 var SOCKET_LIST = {};

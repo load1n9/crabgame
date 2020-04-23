@@ -7,7 +7,7 @@ var server = http.Server(app);
 var io = socketIO(server);
 var port = process.env.PORT || 3000;
 app.set('port', 5941);
-app.use('/', express.static(__dirname + '/client'));
+app.use('/', express.static(__dirname + '/'));
 app.get('/', function(request, response) {
   response.sendFile(path.join(__dirname, 'index.html'));
 });

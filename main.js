@@ -1,19 +1,14 @@
-var http = require('http');
-var path = require('path');
-var socketIO = require('socket.io');
 var express = require('express');
 var app = express();
-var server = http.Server(app);
-var io = socketIO(server);
-var port = process.env.PORT || 3000;
-app.use('/client', express.static(__dirname + '/client'));
-app.get('/', function(request, response) {
-  response.sendFile(path.join(__dirname, 'index.html'));
-});
-server.listen(port, function() {
-  console.log(`starting on ${port}`);
-});
+var serv = require('http').Server(app);
 
+app.get('/',function(req, res) {
+	res.sendFile(__dirname + '/client/index.html');
+});
+app.use('/',express.static(__dirname + '/'));
+
+serv.listen(process.env.PORT || 2000);
+console.log("Server started.");
 var SOCKET_LIST = {};
 var PLAYER_LIST = {};
 
@@ -43,6 +38,7 @@ class Player {
        }
     }
 }
+var io = require('socket.io')(serv,{});
 
 io.sockets.on('connection', function(socket){
     socket.id = Math.random();

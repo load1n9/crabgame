@@ -16,6 +16,9 @@
     "url": "https://github.com/load1n9/crabgame/issues"
   },
   "homepage": "https://github.com/load1n9/crabgame#readme",
+  "engines": {
+    "node": "6.13.0"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "socket.io": "^2.3.0"
